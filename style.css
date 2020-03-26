@@ -1,0 +1,15 @@
+header {
+    color: rgb(100, 100, 167);
+    
+}
+
+#body {
+    margin-top: 30px;
+}
+
+#btn {
+    /* padding-left: 50%;
+    padding-right: 50%; */
+    font-size: 40px !important;
+}
+
