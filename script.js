@@ -4,6 +4,7 @@ var timer = document.getElementById("timer");
 var stQuiz = document.getElementById("btn");
 var jb = document.getElementById("jumbotron");
 var oList = document.getElementById("list");
+var quest = document.getElementById("quest");
 
 
 
@@ -20,20 +21,37 @@ var q1A = [
     createListItem("css"),
     createListItem("javascript")
 ];
-var q2A = createListItem(["gig", "p", "img", "div"]);
+var q2A = [
+    createListItem("gig"),
+    createListItem("p"),
+    createListItem("img"),
+    createListItem("div")
+];
 var q3A = createListItem(["br", "lb", "bk", "linb"]);
 var q4A = createListItem(["head", "body", "section", "article"]);
 
 // Event listener
 stQuiz.addEventListener("click", function () {
     runQuiz(oList, q1A)
+    stQuiz.style.display = "none";
+    questContent = document.createTextNode(questions[0]);
+    quest.appendChild(questContent);
+});
+
+q1A[0].addEventListener("click", function () {
+    questContent.remove();
+    $(oList).empty();
+    runQuiz(oList, q2A)
+    stQuiz.style.display = "none";
+    questContent = document.createTextNode(questions[1]);
+    quest.appendChild(questContent);
 });
 
 
 //  Create <li>
 
 function createListItem (text) {
-    var listItem = document.createElement("li");
+    listItem = document.createElement("li");
     listItem.textContent = text;
     return listItem;
 }
@@ -42,9 +60,6 @@ function runQuiz (parent, children) {
     children.forEach(function (child) {
         parent.appendChild(child);
     });
-    stQuiz.style.display = "none";
-    oListContent = document.createTextNode(questions[0]);
-    oList.appendChild(oListContent);
 };
 
 
