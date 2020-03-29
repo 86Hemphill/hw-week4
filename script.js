@@ -1,93 +1,117 @@
 // Create Variables
-var highScore = document.getElementById("highScore");
-var highScoreContent = highScore.innerHTML;
-var timer = document.getElementById("timer");
-var stQuiz = document.getElementById("btn");
-var jb = document.getElementById("jumbotron");
-var oList = document.getElementById("list");
-var quest = document.getElementById("quest");
+var highScore = $("#highScore");
+var timer = $("#timer");
+var quest = $("#quest");
+var jb = $("#jumbotron");
+var oList = $("#list");
 
 // Q&A's
 
 var q1 = {
     question : "Which component is not considered a primary building block of web dev?",
-    options : [
-        createListItem("Snake"),
-        createListItem("html"),
-        createListItem("css"),
-        createListItem("javascript")],
-    correctAnswer : createListItem("Snake"),
-    wrongAnswer : [
-        createListItem("html"),
-        createListItem("css"),
-        createListItem("javascript")]
+    options : ["snake", "html", "css", "javascript"]
     };
 var q2 = {
     question : "Which of the following is not an html tag?",
-    options : [createListItem("gig"),
-    createListItem("p"),
-    createListItem("img"),
-    createListItem("div")],
-    correctAnswer : createListItem("gig"),
-    wrongAnswer : [createListItem("p"),
-    createListItem("img"),
-    createListItem("div")]
+    options : ["gig", "p", "img", "div"]
     };
-var q3 = [{
+var q3 = {
     question : "Which tag creates a line break?",
-    correctAnswer : createListItem("br"),
-    wrongAnswer : [createListItem("lb"),
-    createListItem("bk"),
-    createListItem("linb")]
-    }];
-var q4 = [{
+    options : ["br", "lb", "bk", "linb"]
+    };
+var q4 = {
     question : "Which section should the page title be placed in?",
-    correctAnswer : createListItem("head"),
-    wrongAnswer : [createListItem("body"),
-    createListItem("section"),
-    createListItem("article")]
-    }];
+    options : ["head", "body", "section", "article"]
+    };
+
+$(document).ready(function () {
 
 // Event listener
 
-stQuiz.addEventListener("click", function() {
-    var highScoreContent = 0;
-    runQuiz (oList, q1.options);
-    stQuiz.style.display = "none";
-    questContent = document.createTextNode(q1.question);
-    quest.appendChild(questContent);
+$("#start").on("click", function () {
+    var stQuiz = $(this);
+    stQuiz.hide();
+    highScore.textContent = "0";
+    quest.append(q1.question);
+    // Create Answer Buttons
+    var correctBtn = $("<button id='Correct'/><br>")
+    correctBtn.text(q1.options[0]);
+    $("#answers").append(correctBtn);
+    for (var i = 1; i < q1.options.length; i++) {
+        var btn = $("<button class='incorrect'/><br>");
+        btn.text(q1.options[i]);
+        $("#answers").append(btn);
+     }
+     $("#Correct").on("click", function() {
+         question2();
+     });
+     $(".incorrect").on("click", function() {
+        question2();
+    });
 });
-// //  Create <li>
 
-function createListItem (text) {
-    listItem = document.createElement("li");
-    listItem.textContent = (text);
-    return listItem;
+
+
+function question2() {
+    $("#btn").hide();
+    quest.empty();
+    $("#answers").empty();
+    quest.append(q2.question);
+    var correctBtn = $("<button id='Correct'/><br>")
+    correctBtn.text(q2.options[0]);
+    $("#answers").append(correctBtn);
+    for (var i = 1; i < q2.options.length; i++) {
+        var btn = $("<button class='incorrect'/><br>");
+        btn.text(q2.options[i]);
+        $("#answers").append(btn);
+     }
+     $("#Correct").on("click", function() {
+         question3();
+     });
+     $(".incorrect").on("click", function() {
+        question3();
+     });
 };
 
-function runQuiz (parent, children) {
-    children.forEach(function (child) {
-        parent.appendChild(child);
-})};
+function question3() {
+    $("#btn").hide();
+    quest.empty();
+    $("#answers").empty();
+    quest.append(q3.question);
+    var correctBtn = $("<button id='Correct'/><br>")
+    correctBtn.text(q3.options[0]);
+    $("#answers").append(correctBtn);
+    for (var i = 1; i < q3.options.length; i++) {
+        var btn = $("<button class='incorrect'/><br>");
+        btn.text(q3.options[i]);
+        $("#answers").append(btn);
+     }
+     $("#Correct").on("click", function() {
+         question4();
+     });
+     $(".incorrect").on("click", function() {
+        question4();
+    });
+};
 
-q1.correctAnswer.addEventListener("click", function () {
-    questContent.remove();
-    $(oList).empty();
-    runQuiz(oList, q2.options);
-    stQuiz.style.display = "none";
-    questContent = document.createTextNode(q2.question);
-    quest.appendChild(questContent);
-    highScoreContent += 10; 
-});   
+function question4() {
+    $("#btn").hide();
+    quest.empty();
+    $("#answers").empty();
+    quest.append(q4.question);
+    var correctBtn = $("<button id='Correct'/><br>")
+    correctBtn.text(q4.options[0]);
+    $("#answers").append(correctBtn);
+    for (var i = 1; i < q4.options.length; i++) {
+        var btn = $("<button class='incorrect'/><br>");
+        btn.text(q4.options[i]);
+        $("#answers").append(btn);
+     }
+    //  $("#Correct").on("click", function() {
+    //      question4();
+    //  });
+//     $("#incorrect").on("click", function() {
+//         question2();
+};
 
-q1.wrongAnswer.forEach(function(element) {
-    element.addEventListener("click", function () {
-    questContent.remove();
-    $(oList).empty();
-    runQuiz(oList, q2.options);
-    stQuiz.style.display = "none";
-    questContent = document.createTextNode(q2.options);
-    quest.appendChild(questContent);
-    highScoreContent += 10; 
-})});    
-   
+});

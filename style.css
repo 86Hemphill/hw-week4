@@ -11,5 +11,14 @@ header {
     /* padding-left: 50%;
     padding-right: 50%; */
     font-size: 40px !important;
+
 }
 
+#answers button {
+    padding: 5px;
+    width: 400px;
+    color: rgb(75, 75, 75);
+    font-size: larger;
+    background-color: rgb(240, 247, 142);
+    font-weight: bold;
+}
