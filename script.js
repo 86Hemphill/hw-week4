@@ -1,5 +1,5 @@
 // Create Variables
-var highScore = $("#highScore");
+var highScore = document.getElementById("highScore");
 var timer = $("#timer");
 var quest = $("#quest");
 var jb = $("#jumbotron");
@@ -26,12 +26,13 @@ var q4 = {
 
 $(document).ready(function () {
 
+    highScore.innerHTML = "";
 // Event listener
 
 $("#start").on("click", function () {
     var stQuiz = $(this);
     stQuiz.hide();
-    highScore.textContent = "0";
+    highScore.innerHTML += parseInt(0);
     quest.append(q1.question);
     // Create Answer Buttons
     var correctBtn = $("<button id='Correct'/><br>")
@@ -43,6 +44,7 @@ $("#start").on("click", function () {
         $("#answers").append(btn);
      }
      $("#Correct").on("click", function() {
+        highScore.innerHTML += parseInt(10);
          question2();
      });
      $(".incorrect").on("click", function() {
