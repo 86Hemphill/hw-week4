@@ -109,11 +109,17 @@ function question4() {
         btn.text(q4.options[i]);
         $("#answers").append(btn);
      }
-    //  $("#Correct").on("click", function() {
-    //      question4();
-    //  });
-//     $("#incorrect").on("click", function() {
-//         question2();
+     $("#answers").on("click", function() {
+        quizComplete();
+     });
 };
+
+function quizComplete(){
+    $("#btn").hide();
+    quest.empty();
+    $("#answers").empty();
+    var qComplete = "Quiz Complete!";
+    quest.append(qComplete);
+}
 
 });
