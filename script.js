@@ -1,9 +1,10 @@
 // Create Variables
-var highScore = document.getElementById("highScore");
+var highScore = $("#highScore");
 var timer = $("#timer");
 var quest = $("#quest");
-var jb = $("#jumbotron");
+var area = $("#testArea");
 var oList = $("#list");
+var score = 0;
 
 // Q&A's
 
@@ -26,13 +27,13 @@ var q4 = {
 
 $(document).ready(function () {
 
-    highScore.innerHTML = "";
 // Event listener
 
 $("#start").on("click", function () {
     var stQuiz = $(this);
     stQuiz.hide();
-    highScore.innerHTML += parseInt(0);
+    highScore.text = "Highscore :"
+    highScore.append(highScore.text);
     quest.append(q1.question);
     // Create Answer Buttons
     var correctBtn = $("<button id='Correct'/><br>")
@@ -44,7 +45,7 @@ $("#start").on("click", function () {
         $("#answers").append(btn);
      }
      $("#Correct").on("click", function() {
-        highScore.innerHTML += parseInt(10);
+        score += 50;
          question2();
      });
      $(".incorrect").on("click", function() {
@@ -68,6 +69,7 @@ function question2() {
         $("#answers").append(btn);
      }
      $("#Correct").on("click", function() {
+        score += 50;
          question3();
      });
      $(".incorrect").on("click", function() {
@@ -89,6 +91,7 @@ function question3() {
         $("#answers").append(btn);
      }
      $("#Correct").on("click", function() {
+        score += 50;
          question4();
      });
      $(".incorrect").on("click", function() {
@@ -109,9 +112,13 @@ function question4() {
         btn.text(q4.options[i]);
         $("#answers").append(btn);
      }
-     $("#answers").on("click", function() {
+     $("#Correct").on("click", function() {
+        score += 50;
         quizComplete();
      });
+     $(".incorrect").on("click", function() {
+        quizComplete();
+    });
 };
 
 function quizComplete(){
@@ -120,6 +127,13 @@ function quizComplete(){
     $("#answers").empty();
     var qComplete = "Quiz Complete!";
     quest.append(qComplete);
+    var yourScore = $("<h4/>");
+    yourScore.text("Your score is " + score + "!");
+    area.append(yourScore);
 }
+
+
+// var hsContent = document.createTextNode("Highscore : ");
+// highScore.append(hsContent);
 
 });
